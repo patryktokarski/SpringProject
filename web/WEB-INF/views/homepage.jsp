@@ -1,0 +1,14 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Home</title>
+</head>
+<body>
+    <h1>Welcome to homepage.</h1>
+<div class="container">
+    <a href="<c:url value="/login" />">Login</a>
+    <a href="<c:url value="/user/list" />">Users</a>
+</div>
+</body>
+</html>
