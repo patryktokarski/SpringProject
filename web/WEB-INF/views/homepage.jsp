@@ -8,7 +8,6 @@
     <h1>Welcome to homepage.</h1>
 <div class="container">
     <a href="<c:url value="/login" />">Login</a>
-    <a href="<c:url value="/user/list" />">Users</a>
 </div>
 </body>
 </html>

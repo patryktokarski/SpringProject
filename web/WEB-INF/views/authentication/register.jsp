@@ -12,7 +12,7 @@
             <p class="login-box-msg">Register</p>
             <form:form method="post" modelAttribute="user" action="/register">
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                <input type="hidden" name="id">
+                <form:hidden path="id"/>
                 <spring:bind path="firstName">
                     <div class="${status.error ? 'alert alert-danger' : ''}">
                         <p><form:errors path="firstName"/></p>

@@ -1,8 +1,11 @@
 package com.spring.test.configuration;
 
+import com.spring.test.converters.RoleConverter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -14,6 +17,9 @@ import org.springframework.web.servlet.view.JstlView;
 @EnableWebMvc
 @ComponentScan("com.spring.test")
 public class MainConfiguration extends WebMvcConfigurerAdapter {
+
+    @Autowired
+    RoleConverter roleConverter;
 
     @Bean
     public ViewResolver viewResolver() {
@@ -29,5 +35,11 @@ public class MainConfiguration extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/webjars/**").addResourceLocations("/webjars/");
         registry.addResourceHandler("/admin/partials/**").addResourceLocations("/admin/partials/");
         registry.addResourceHandler("/application/partials/**").addResourceLocations("/application/partials/");
+        registry.addResourceHandler("/tags/**").addResourceLocations("/tags/");
+    }
+
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addConverter(roleConverter);
     }
 }

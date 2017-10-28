@@ -10,7 +10,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -18,6 +17,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -58,17 +58,19 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String postRegister(@ModelAttribute("user") @Valid User user, BindingResult result, Model model) {
+    public String postRegister(@ModelAttribute("user") @Valid User user, BindingResult result, Model model,
+                               RedirectAttributes redirectAttributes) {
+        userValidator.validate(user, result);
         if(result.hasErrors()) {
+            System.out.println(result);
             userService.prepareModelForCreate(model);
             return "authentication/register";
         }
-        userValidator.validate(user, result);
         userService.setRole(user,"User");
         user.setState(State.ACTIVE.getState());
         userService.create(user);
-        model.addAttribute("success", "User created");
-        return "authentication/login";
+        redirectAttributes.addFlashAttribute("success", "User created");
+        return "redirect:/login";
     }
 
     @InitBinder

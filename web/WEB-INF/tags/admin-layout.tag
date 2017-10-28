@@ -3,6 +3,7 @@
 <%@ attribute name="content" fragment="true" %>
 <%@ attribute name="title" required="true" %>
 <%@ attribute name="userName" required="true" %>
+<%@ attribute name="customScript" fragment="true"%>
 
 <!DOCTYPE html>
 <html>
@@ -25,6 +26,8 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="<c:url value="/webjars/AdminLTE/2.4.2/dist/css/skins/_all-skins.min.css"/>">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="<c:url value="/webjars/AdminLTE/2.4.2/bower_components/select2/dist/css/select2.min.css"/>">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -80,6 +83,12 @@
 <script src="<c:url value="/webjars/AdminLTE/2.4.2/bower_components/jquery/dist/jquery.min.js"/>"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="<c:url value="/webjars/AdminLTE/2.4.2/bower_components/bootstrap/dist/js/bootstrap.min.js"/>"></script>
+<!-- Select2 -->
+<script src="<c:url value="/webjars/AdminLTE/2.4.2/bower_components/select2/dist/js/select2.full.min.js"/>"></script>
+<!-- InputMask -->
+<script src="<c:url value="/webjars/AdminLTE/2.4.2/plugins/input-mask/jquery.inputmask.js"/>"></script>
+<script src="<c:url value="/webjars/AdminLTE/2.4.2/plugins/input-mask/jquery.inputmask.date.extensions.js"/>"></script>
+<script src="<c:url value="/webjars/AdminLTE/2.4.2/plugins/input-mask/jquery.inputmask.extensions.js"/>"></script>
 <!-- FastClick -->
 <script src="<c:url value="/webjars/AdminLTE/2.4.2/bower_components/fastclick/lib/fastclick.js"/>"></script>
 <!-- AdminLTE App -->
@@ -91,11 +100,13 @@
 <script src="<c:url value="/webjars/AdminLTE/2.4.2/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"/>"></script>
 <!-- SlimScroll -->
 <script src="<c:url value="/webjars/AdminLTE/2.4.2/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"/>"></script>
-<!-- ChartJS -->
-<%--<script src="<c:url value="/webjars/AdminLTE/2.4.2/bower_components/Chart.js/Chart.js"/>"></script>--%>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="<c:url value="/webjars/AdminLTE/2.4.2/dist/js/pages/dashboard2.js"/>"></script>
+<!-- iCheck 1.0.1 -->
+<script src="<c:url value="/webjars/AdminLTE/2.4.2/plugins/iCheck/icheck.min.js"/>"></script>
+<!-- AdminLTE App -->
+<script src="<c:url value="/webjars/AdminLTE/2.4.2/dist/js/adminlte.min.js"/>"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<c:url value="/webjars/AdminLTE/2.4.2/dist/js/demo.js"/>"></script>
+
+<jsp:invoke fragment="customScript"/>
 </body>
 </html>

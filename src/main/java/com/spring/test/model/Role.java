@@ -12,11 +12,11 @@ public class Role {
     @Column(name = "type")
     private String type;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -26,5 +26,10 @@ public class Role {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return this.getType();
     }
 }

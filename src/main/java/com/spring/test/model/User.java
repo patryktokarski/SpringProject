@@ -26,7 +26,6 @@ public class User {
     @Column(name = "email")
     private String email;
 
-    @NotNull(message = "This field is required")
     @Column(name = "password")
     private String password;
 
@@ -42,11 +41,11 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private Set<Role> roles = new HashSet<Role>();
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

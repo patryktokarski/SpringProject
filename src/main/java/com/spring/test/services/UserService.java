@@ -15,5 +15,8 @@ public interface UserService {
     boolean existsInDb(User user);
     boolean userWithEmailExists(String email, User user);
     void prepareModelForCreate(Model model);
+    void prepareModelForEdit(Model model, int id);
+    void mergeWithExisting(User user);
+    boolean isUserNew(int id);
 
 }

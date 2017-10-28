@@ -24,11 +24,19 @@ public class UserValidator implements Validator {
     }
 
     private void passwordCheck(User user, Errors errors) {
-        if(user.getPassword() == null) {
-            errors.rejectValue("password", "", "Password field is required");
+        if(userService.isUserNew(user.getId())) {
+            if(!isPasswordSet(user)) {
+                errors.rejectValue("password", "", "Password field is required");
+            } else {
+                if(!doesPasswordAndPasswordConfirmationMatch(user)) {
+                    errors.rejectValue("password", "", "Password and Password Confirmation fields does not match");
+                }
+            }
         } else {
-            if(!user.getPassword().equals(user.getPasswordConfirmation())) {
-                errors.rejectValue("password", "", "Password and Password Confirmation fields does not match");
+            if(isPasswordSet(user)) {
+                if(!doesPasswordAndPasswordConfirmationMatch(user)) {
+                    errors.rejectValue("password", "", "Password and Password Confirmation fields does not match");
+                }
             }
         }
     }
@@ -37,5 +45,13 @@ public class UserValidator implements Validator {
         if(userService.userWithEmailExists(user.getEmail(), user)) {
             errors.rejectValue("email", "", "Given email is already used");
         }
+    }
+
+    private boolean isPasswordSet(User user) {
+        return user.getPassword() != null;
+    }
+
+    private boolean doesPasswordAndPasswordConfirmationMatch(User user) {
+        return user.getPassword().equals(user.getPasswordConfirmation());
     }
 }

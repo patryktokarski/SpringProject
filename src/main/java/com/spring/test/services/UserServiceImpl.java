@@ -1,6 +1,7 @@
 package com.spring.test.services;
 
 import com.spring.test.model.Role;
+import com.spring.test.model.State;
 import com.spring.test.model.User;
 import com.spring.test.models.RoleDao;
 import com.spring.test.models.UserDao;
@@ -86,6 +87,34 @@ public class UserServiceImpl implements UserService {
     public void prepareModelForCreate(Model model) {
         if(!model.containsAttribute("user")) {
             model.addAttribute("user", new User());
+            model.addAttribute("create", true);
+            model.addAttribute("stateList", State.values());
         }
+    }
+
+    public void prepareModelForEdit(Model model, int id) {
+        if(!model.containsAttribute("user")) {
+            User user = findById(id);
+            model.addAttribute("user", user);
+            model.addAttribute("create", false);
+            model.addAttribute("stateList", State.values());
+        }
+    }
+
+    public void mergeWithExisting(User user) {
+        User existingUser = findById(user.getId());
+        existingUser.setFirstName(user.getFirstName());
+        existingUser.setLastName(user.getLastName());
+        existingUser.setEmail(user.getEmail());
+        if(user.getPassword() != null) {
+            existingUser.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
+        existingUser.setState(user.getState());
+        existingUser.setRoles(user.getRoles());
+        userDao.update(existingUser);
+    }
+
+    public boolean isUserNew(int id) {
+        return id == 0;
     }
 }

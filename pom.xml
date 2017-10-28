@@ -90,7 +90,6 @@
             <artifactId>hibernate-core</artifactId>
             <version>4.3.6.Final</version>
         </dependency>
-
         <!-- Hibernate validators -->
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -117,7 +116,6 @@
             <artifactId>spring-security-taglibs</artifactId>
             <version>4.2.1.RELEASE</version>
         </dependency>
-
 
     </dependencies>
 
