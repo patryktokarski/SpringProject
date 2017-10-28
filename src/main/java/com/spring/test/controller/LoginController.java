@@ -13,10 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -70,6 +67,22 @@ public class LoginController {
         user.setState(State.ACTIVE.getState());
         userService.create(user);
         redirectAttributes.addFlashAttribute("success", "User created");
+        return "redirect:/login";
+    }
+
+    @RequestMapping(value = "/forgot-password", method = RequestMethod.GET)
+    public String getForgotPassword() {
+        return "authentication/forgot-password";
+    }
+
+    @RequestMapping(value = "/forgot-password", method = RequestMethod.POST)
+    public String postForgotPassword(HttpServletRequest request, RedirectAttributes redirectAttributes, Model model) {
+        User user = userService.findByEmail(request.getParameter("email"));
+        if(user == null) {
+            redirectAttributes.addFlashAttribute("error", "Wrong email address");
+            return "redirect:/forgot-password";
+        }
+
         return "redirect:/login";
     }
 

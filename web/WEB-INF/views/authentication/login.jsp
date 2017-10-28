@@ -40,7 +40,7 @@
                     </div>
                 </div>
             </form>
-            <a href="#">I forgot my password</a><br>
+            <a href="<c:url value="/forgot-password"/> ">I forgot my password</a><br>
             <a href="<c:url value="/register"/>" class="text-center">Register a new membership</a>
         </div>
     </div>
