@@ -34,16 +34,16 @@ public class UserController {
 
     @RequestMapping(value = "/list")
     public String getList(Model model) {
-        List<User> users = userService.getAll();
-        model.addAttribute("users", users);
-        return "admin/users/list";
+        List<User> user = userService.getAll();
+        model.addAttribute("user", user);
+        return "admin/user/list";
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String getCreate(Model model) {
         userService.prepareModelForCreate(model);
         model.addAttribute("create", true);
-        return "admin/users/form";
+        return "admin/user/form";
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
@@ -52,17 +52,17 @@ public class UserController {
         userValidator.validate(user, result);
         if(result.hasErrors()) {
             userService.prepareModelForCreate(model);
-            return "admin/users/form";
+            return "admin/user/form";
         }
         userService.create(user);
         redirectAttributes.addFlashAttribute("success", "User has been created");
-        return "redirect:/users/list";
+        return "redirect:/user/list";
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String getEdit(@PathVariable int id, Model model) {
         userService.prepareModelForEdit(model, id);
-        return "admin/users/form";
+        return "admin/user/form";
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
@@ -71,7 +71,7 @@ public class UserController {
         userValidator.validate(user, result);
         if(result.hasErrors()) {
             userService.prepareModelForEdit(model, user.getId());
-            return "admin/users/form";
+            return "admin/user/form";
         }
         userService.mergeWithExisting(user);
         redirectAttributes.addFlashAttribute("success", "Changes saved");
