@@ -1,4 +1,4 @@
-package com.spring.test.models;
+package com.spring.test.dao;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;

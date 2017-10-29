@@ -6,3 +6,4 @@ out/
 *.ear
 *.iml
 target/
+*.properties

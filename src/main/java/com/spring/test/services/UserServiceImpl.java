@@ -3,8 +3,8 @@ package com.spring.test.services;
 import com.spring.test.model.Role;
 import com.spring.test.model.State;
 import com.spring.test.model.User;
-import com.spring.test.models.RoleDao;
-import com.spring.test.models.UserDao;
+import com.spring.test.dao.RoleDao;
+import com.spring.test.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -116,5 +116,10 @@ public class UserServiceImpl implements UserService {
 
     public boolean isUserNew(int id) {
         return id == 0;
+    }
+
+    public void changePassword(User user, String password) {
+        user.setPassword(passwordEncoder.encode(password));
+        userDao.update(user);
     }
 }

@@ -2,7 +2,7 @@ package com.spring.test.controller.admin;
 
 import com.spring.test.model.Role;
 import com.spring.test.model.User;
-import com.spring.test.models.RoleDao;
+import com.spring.test.dao.RoleDao;
 import com.spring.test.services.UserService;
 import com.spring.test.validation.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;

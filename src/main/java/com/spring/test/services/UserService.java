@@ -18,5 +18,6 @@ public interface UserService {
     void prepareModelForEdit(Model model, int id);
     void mergeWithExisting(User user);
     boolean isUserNew(int id);
+    void changePassword(User user, String password);
 
 }

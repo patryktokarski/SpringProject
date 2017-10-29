@@ -1,7 +1,7 @@
 package com.spring.test.services;
 
 import com.spring.test.model.Role;
-import com.spring.test.models.RoleDao;
+import com.spring.test.dao.RoleDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

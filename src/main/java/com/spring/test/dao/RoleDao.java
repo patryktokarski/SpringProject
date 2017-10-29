@@ -1,4 +1,4 @@
-package com.spring.test.models;
+package com.spring.test.dao;
 
 import com.spring.test.model.Role;
 
