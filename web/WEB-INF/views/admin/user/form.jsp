@@ -26,7 +26,8 @@
                         <!-- /.box-header -->
                         <!-- form start -->
                         <form:form method="post" modelAttribute="user"
-                                   action="${create == true ? '/user/create' : '/user/edit'}" cssClass="form">
+                                   action="${create == true ? '/user/create' : '/user/edit'}" cssClass="form"
+                                   enctype="multipart/form-data">
                                 <div class="box-body">
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     <form:hidden path="id"/>
@@ -92,6 +93,11 @@
                                                      cssStyle="width: 100%" data-placeholder="Select role">
                                             <form:options items="${rolesSet}" itemLabel="type" itemValue="id"/>
                                         </form:select>
+                                    </div>
+                                </spring:bind>
+                                <spring:bind path="image">
+                                    <div class="form-group">
+                                        <input type="file" name="image" class="form-control">
                                     </div>
                                 </spring:bind>
                                     <div class="form-group">

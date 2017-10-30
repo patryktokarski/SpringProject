@@ -3,24 +3,30 @@ package com.spring.test.controller.admin;
 import com.spring.test.model.Role;
 import com.spring.test.model.User;
 import com.spring.test.dao.RoleDao;
+import com.spring.test.services.ImageService;
 import com.spring.test.services.UserService;
 import com.spring.test.validation.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.*;
 
 @Controller
 @RequestMapping(value = "/user")
+@Secured("ROLE_ADMIN")
 public class UserController {
 
     @Autowired
@@ -32,10 +38,13 @@ public class UserController {
     @Autowired
     UserValidator userValidator;
 
+    @Autowired
+    ImageService imageService;
+
     @RequestMapping(value = "/list")
     public String getList(Model model) {
-        List<User> user = userService.getAll();
-        model.addAttribute("user", user);
+        List<User> users = userService.getAll();
+        model.addAttribute("users", users);
         return "admin/user/list";
     }
 
@@ -47,13 +56,16 @@ public class UserController {
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String postCreate(@ModelAttribute("user") User user, BindingResult result,
-                             RedirectAttributes redirectAttributes, Model model) {
+    public String postCreate(@ModelAttribute("user") User user,
+                             BindingResult result, RedirectAttributes redirectAttributes, Model model,
+                             @RequestParam("file")MultipartFile file) {
         userValidator.validate(user, result);
         if(result.hasErrors()) {
             userService.prepareModelForCreate(model);
             return "admin/user/form";
         }
+
+//        imageService.save(file);
         userService.create(user);
         redirectAttributes.addFlashAttribute("success", "User has been created");
         return "redirect:/user/list";
