@@ -1,6 +1,10 @@
 package com.spring.test.services;
 
+import com.spring.test.dao.ImageDao;
+import com.spring.test.model.Image;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.BufferedOutputStream;
@@ -10,7 +14,11 @@ import java.io.IOException;
 import java.util.UUID;
 
 @Service
+@Transactional
 public class ImageServiceImpl implements ImageService {
+
+    @Autowired
+    ImageDao imageDao;
 
     public void save(MultipartFile file) {
         if(!file.isEmpty()) {
@@ -22,10 +30,15 @@ public class ImageServiceImpl implements ImageService {
                 if(!dir.exists()) {
                     dir.mkdirs();
                 }
-                File serverFile = new File(dir.getAbsolutePath() + File.separator + name);
+                String path = dir.getAbsolutePath() + File.separator + name;
+                File serverFile = new File(path);
                 BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
                 stream.write(bytes);
                 stream.close();
+
+                Image image = new Image(path);
+                imageDao.create(image);
+
             } catch (IOException e) {
                 e.printStackTrace();
             }

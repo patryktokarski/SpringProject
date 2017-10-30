@@ -28,4 +28,8 @@ public class Image {
     public void setPath(String path) {
         this.path = path;
     }
+
+    public Image(String path) {
+        this.path = path;
+    }
 }
