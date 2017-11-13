@@ -26,7 +26,7 @@
                         <!-- /.box-header -->
                         <!-- form start -->
                         <form:form method="post" modelAttribute="event"
-                                   action="${create == true ? '/event/create' : '/event/edit'}" cssClass="form">
+                                   action="${create == true ? '/admin/event/create' : '/admin/event/edit'}" cssClass="form">
                                 <div class="box-body">
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     <form:hidden path="id"/>

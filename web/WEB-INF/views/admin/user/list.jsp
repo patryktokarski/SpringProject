@@ -21,7 +21,7 @@
                         <th>Last Name</th>
                         <th>Email</th>
                         <th>State</th>
-                        <th><a href="<c:url value="/user/create"/>" class="btn btn-success btn-sm" style="width: 163px">Create</a></th>
+                        <th><a href="<c:url value="/admin/user/create"/>" class="btn btn-success btn-sm" style="width: 163px">Create</a></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -34,9 +34,9 @@
                         <td><span class="label label-<c:choose><c:when test="${user.state.equals('ACTIVE')}">success</c:when><c:when test="${user.state.equals('INACTIVE')}">warning</c:when><c:when test="${user.state.equals('LOCKED')}">danger</c:when></c:choose>">
                             ${user.state}</span></td>
                         <td>
-                            <a href="<c:url value="/user/edit/${user.id}"/>" class="btn btn-primary btn-sm" style="width: 80px">
+                            <a href="<c:url value="/admin/user/edit/${user.id}"/>" class="btn btn-primary btn-sm" style="width: 80px">
                                 <i class="fa fa-pencil-square-o"></i> Edit</a>
-                            <a href="<c:url value="/user/delete/${user.id}"/>" class="btn btn-danger btn-sm" style="width: 80px">
+                            <a href="<c:url value="/admin/user/delete/${user.id}"/>" class="btn btn-danger btn-sm" style="width: 80px">
                                 <i class="fa fa-trash"></i> Delete</a>
                         </td>
                     </tr>

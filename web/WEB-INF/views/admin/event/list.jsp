@@ -19,7 +19,7 @@
                             <th>#</th>
                             <th>Name</th>
                             <th>Date</th>
-                            <th><a href="<c:url value="/event/create"/>" class="btn btn-success btn-sm" style="width: 163px">Create</a></th>
+                            <th><a href="<c:url value="/admin/event/create"/>" class="btn btn-success btn-sm" style="width: 163px">Create</a></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -29,9 +29,9 @@
                         <td>${event.name}</td>
                         <td>${event.date}</td>
                         <td>
-                            <a href="<c:url value="/event/edit/${event.id}"/>" class="btn btn-primary btn-sm" style="width: 80px">
+                            <a href="<c:url value="/admin/event/edit/${event.id}"/>" class="btn btn-primary btn-sm" style="width: 80px">
                                 <i class="fa fa-pencil-square-o"></i> Edit</a>
-                            <a href="<c:url value="/event/delete/${event.id}"/>" class="btn btn-danger btn-sm" style="width: 80px">
+                            <a href="<c:url value="/admin/event/delete/${event.id}"/>" class="btn btn-danger btn-sm" style="width: 80px">
                                 <i class="fa fa-trash"></i> Delete</a>
                         </td>
                     </tr>

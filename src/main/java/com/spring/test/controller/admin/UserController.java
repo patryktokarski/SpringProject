@@ -25,7 +25,7 @@ import java.io.IOException;
 import java.util.*;
 
 @Controller
-@RequestMapping(value = "/user")
+@RequestMapping(value = "/admin/user")
 @Secured("ROLE_ADMIN")
 public class UserController {
 
@@ -68,7 +68,7 @@ public class UserController {
 //        imageService.save(file);
         userService.create(user);
         redirectAttributes.addFlashAttribute("success", "User has been created");
-        return "redirect:/user/list";
+        return "redirect:/admin/user/list";
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
@@ -87,14 +87,14 @@ public class UserController {
         }
         userService.mergeWithExisting(user);
         redirectAttributes.addFlashAttribute("success", "Changes saved");
-        return "redirect:/user/list";
+        return "redirect:/admin/user/list";
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String getDelete(@PathVariable int id, RedirectAttributes redirectAttributes) {
         userService.deleteById(id);
         redirectAttributes.addFlashAttribute("success", "User deleted");
-        return "redirect:/user/list";
+        return "redirect:/admin/user/list";
     }
 
     @ModelAttribute("rolesSet")

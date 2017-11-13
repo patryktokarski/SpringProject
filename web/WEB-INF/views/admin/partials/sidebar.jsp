@@ -27,13 +27,13 @@
     <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
         <li>
-            <a href="<c:url value="/user/list"/>">
+            <a href="<c:url value="/admin/user/list"/>">
                 <i class="fa fa-user"></i>
                 <span>Users</span>
             </a>
         </li>
         <li>
-            <a href="<c:url value="/event/list"/>">
+            <a href="<c:url value="/admin/event/list"/>">
                 <i class="fa fa-star"></i>
                 <span>Events</span>
             </a>
