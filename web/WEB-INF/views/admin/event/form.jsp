@@ -76,7 +76,8 @@
     <jsp:attribute name="customScript">
           <script>
               $('#datepicker').datepicker({
-                  autoclose: true
+                  autoclose: true,
+                  dateFormat: "dd/mm/yyyy"
               })
           </script>
     </jsp:attribute>
