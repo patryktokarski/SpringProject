@@ -2,6 +2,7 @@ package com.spring.test.model;
 
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -19,9 +20,9 @@ public class Event {
     private String description;
 
     @Column(name = "date")
-    private String date;
+    private Date date;
 
-    private List<User> users;
+//    private List<User> users;
 
     public int getId() {
         return id;
@@ -47,19 +48,19 @@ public class Event {
         this.description = description;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
+//    public List<User> getUsers() {
+//        return users;
+//    }
+//
+//    public void setUsers(List<User> users) {
+//        this.users = users;
+//    }
 }
