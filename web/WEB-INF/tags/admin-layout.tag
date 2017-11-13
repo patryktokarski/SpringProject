@@ -28,6 +28,8 @@
     <link rel="stylesheet" href="<c:url value="/webjars/AdminLTE/2.4.2/dist/css/skins/_all-skins.min.css"/>">
     <!-- Select2 -->
     <link rel="stylesheet" href="<c:url value="/webjars/AdminLTE/2.4.2/bower_components/select2/dist/css/select2.min.css"/>">
+    <!-- bootstrap datepicker -->
+    <link rel="stylesheet" href="<c:url value="/webjars/AdminLTE/2.4.2/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css"/>">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -106,6 +108,8 @@
 <script src="<c:url value="/webjars/AdminLTE/2.4.2/dist/js/adminlte.min.js"/>"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<c:url value="/webjars/AdminLTE/2.4.2/dist/js/demo.js"/>"></script>
+<!-- bootstrap datepicker -->
+<script src="<c:url value="/webjars/AdminLTE/2.4.2/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"/>"></script>
 
 <jsp:invoke fragment="customScript"/>
 </body>
