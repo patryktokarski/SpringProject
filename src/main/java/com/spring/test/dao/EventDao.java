@@ -10,4 +10,6 @@ public interface EventDao {
     Event findById(int id);
     List<Event> getAll();
     void deleteById(int id);
+    List<Event> getEventsByEnrolledUserId(int id);
+    List<Event> getEventsAvailableForUser(int id);
 }

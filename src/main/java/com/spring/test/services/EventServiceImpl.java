@@ -34,4 +34,12 @@ public class EventServiceImpl implements EventService {
     public void deleteById(int id) {
         eventDao.deleteById(id);
     }
+
+    public List<Event> getEventsByEnrolledUserId(int id) {
+        return eventDao.getEventsByEnrolledUserId(id);
+    }
+
+    public List<Event> getEventsAvailableForUser(int id) {
+        return eventDao.getEventsAvailableForUser(id);
+    }
 }

@@ -19,5 +19,4 @@ public interface UserService {
     void mergeWithExisting(User user);
     boolean isUserNew(int id);
     void changePassword(User user, String password);
-
 }

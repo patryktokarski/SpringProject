@@ -4,6 +4,7 @@ import com.spring.test.model.Event;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.sql.JoinType;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -36,5 +37,20 @@ public class EventDaoImpl extends AbstractDao<Integer, Event> implements EventDa
         criteria.add(Restrictions.eq("id", id));
         Event event = (Event) criteria.uniqueResult();
         delete(event);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Event> getEventsByEnrolledUserId(int id) {
+        Criteria criteria = createEntityCriteria();
+        criteria.createAlias("event_user", "eu", JoinType.LEFT_OUTER_JOIN);
+        criteria.add(Restrictions.eq("eu.user_id", id));
+        return (List<Event>) criteria.list();
+    }
+
+    public List<Event> getEventsAvailableForUser(int id) {
+        Criteria criteria = createEntityCriteria();
+        criteria.createAlias("event_user", "eu", JoinType.LEFT_OUTER_JOIN);
+        criteria.add(Restrictions.ne("event_user", id));
+        return null;
     }
 }
