@@ -38,8 +38,8 @@ public class UserController {
     @Autowired
     UserValidator userValidator;
 
-    @Autowired
-    ImageService imageService;
+//    @Autowired
+//    ImageService imageService;
 
     @RequestMapping(value = "/list")
     public String getList(Model model) {
