@@ -2,6 +2,7 @@ package com.spring.test.dao;
 
 import com.spring.test.model.Event;
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.sql.JoinType;
@@ -41,16 +42,19 @@ public class EventDaoImpl extends AbstractDao<Integer, Event> implements EventDa
 
     @SuppressWarnings("unchecked")
     public List<Event> getEventsByEnrolledUserId(int id) {
-        Criteria criteria = createEntityCriteria();
-        criteria.createAlias("event_user", "eu", JoinType.LEFT_OUTER_JOIN);
-        criteria.add(Restrictions.eq("eu.user_id", id));
+        Criteria criteria = getSession().createCriteria(Event.class, "e");
+        criteria.createAlias("e.users", "u", JoinType.LEFT_OUTER_JOIN);
+        criteria.add(Restrictions.eq("u.id", id));
         return (List<Event>) criteria.list();
     }
 
+    @SuppressWarnings("unchecked")
     public List<Event> getEventsAvailableForUser(int id) {
-        Criteria criteria = createEntityCriteria();
-        criteria.createAlias("event_user", "eu", JoinType.LEFT_OUTER_JOIN);
-        criteria.add(Restrictions.ne("event_user", id));
-        return null;
+        Criteria criteria = getSession().createCriteria(Event.class, "e");
+        criteria.createAlias("e.users", "u", JoinType.LEFT_OUTER_JOIN);
+        Criterion exceptThisUser = Restrictions.ne("u.id", id);
+        Criterion notChoosen = Restrictions.isNull("u.id");
+        criteria.add(Restrictions.or(exceptThisUser, notChoosen));
+        return (List<Event>) criteria.list();
     }
 }
