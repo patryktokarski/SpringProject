@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -60,5 +61,16 @@ public class EventServiceImpl implements EventService {
             users = event.getUsers();
         }
         return users;
+    }
+
+    public void unenrollUser(User user, Event event) {
+        List<User> users = event.getUsers();
+        Iterator<User> usersIterator = users.iterator();
+        while(usersIterator.hasNext()) {
+            if(usersIterator.next().getEmail().equals(user.getEmail())) {
+                usersIterator.remove();
+            }
+        }
+        eventDao.update(event);
     }
 }

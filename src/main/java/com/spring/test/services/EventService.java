@@ -14,4 +14,5 @@ public interface EventService {
     List<Event> getEventsByEnrolledUserId(int id);
     List<Event> getEventsAvailableForUser(int id);
     void enrollUser(User user, Event event);
+    void unenrollUser(User user, Event event);
 }
