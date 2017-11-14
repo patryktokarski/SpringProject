@@ -22,7 +22,8 @@ public class Event {
     @Column(name = "date")
     private Date date;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER,
+                cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH})
     @JoinTable(
             name = "event_user",
             joinColumns = @JoinColumn(name = "event_id"),
