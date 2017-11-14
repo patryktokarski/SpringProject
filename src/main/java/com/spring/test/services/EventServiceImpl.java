@@ -2,10 +2,12 @@ package com.spring.test.services;
 
 import com.spring.test.dao.EventDao;
 import com.spring.test.model.Event;
+import com.spring.test.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -41,5 +43,22 @@ public class EventServiceImpl implements EventService {
 
     public List<Event> getEventsAvailableForUser(int id) {
         return eventDao.getEventsAvailableForUser(id);
+    }
+
+    public void enrollUser(User user, Event event) {
+        List<User> users = prepareUserList(event);
+        users.add(user);
+        event.setUsers(users);
+        eventDao.update(event);
+    }
+
+    private List<User> prepareUserList(Event event) {
+        List<User> users;
+        if(event.getUsers() == null) {
+            users = new ArrayList<User>();
+        } else {
+            users = event.getUsers();
+        }
+        return users;
     }
 }
