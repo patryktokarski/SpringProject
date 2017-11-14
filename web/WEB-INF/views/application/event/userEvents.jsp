@@ -28,7 +28,7 @@
                         <td>${event.id}</td>
                         <td>${event.name}</td>
                         <td>${event.date}</td>
-                        <td><a href="<c:url value="/app/event/unenroll/${event.id}"/>" class="btn btn-info btn-sm">Register</a></td>
+                        <td><a href="<c:url value="/app/event/unenroll/${event.id}"/>" class="btn btn-warning btn-sm">Unenroll</a></td>
                     </tr>
                     </c:forEach>
                         </tbody>
