@@ -28,6 +28,12 @@
         <li class="header">MAIN NAVIGATION</li>
         <%--<li class="active treeview menu-open">--%>
         <li>
+            <a href="<c:url value="/app/event/my-events"/>">
+                <i class="fa fa-user"></i>
+                <span>My Events</span>
+            </a>
+        </li>
+        <li>
             <a href="<c:url value="/app/event/list"/>">
                 <i class="fa fa-user"></i>
                 <span>Events</span>
